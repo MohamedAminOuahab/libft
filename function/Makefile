@@ -27,14 +27,12 @@ $(PROG): $(OBJ)
 
 # supression des fichier objet
 clean:
-	del  $(OBJ)
+	rm -rf $(OBJ)
 
 # supprime tout
 fclean: clean
-	del $(PROG)
-	del $(LIB)
+	rm -rf $(PROG)
+	rm -rf $(LIB)
 
 # recommence la compilation total du projet 
 re: fclean all
-
-

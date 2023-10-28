@@ -12,87 +12,83 @@
 
 #include "libft.h"
 
-static int	ft_is_separator(char c, char charset) 
+static size_t	ft_count(char const *s, char sep)
 {
-	if (c == charset)
-		return (1);
-    return (0);
-}
-
-static char	*ft_strndup(char const *src, size_t size)
-{
-	size_t 	i;
-	char 	*dest;
+	size_t	count;
+	size_t	i;
 
 	i = 0;
-	dest = (char *)malloc(sizeof(char) * strlen(src) + 1);
-	if (!dest)
-		return NULL;
-	while ((i < size) && src[i])
-	{
-		dest[i] = src[i];
+	count = 1;
+	while (s[i] == sep)
 		i++;
-	}
-	dest[i] = '\0';
-	return (dest);
-}
-
-static int	ft_count_word(char const *str, char charset) 
-{
-    int count;
-    int inside_word;
-
-	count = 0;
-	inside_word = 0;
-    while (*str) 
+	if (s[i] == '\0')
+		return (1);
+	while (s[i])
 	{
-        if (ft_is_separator(*str, charset))
-            inside_word = 0;
-        else if (!inside_word) 
+		if (s[i] == sep)
 		{
-            inside_word = 1;
-            count++;
-        }
-        str++;
-    }
-    return (count);
+			while (s[i] == sep)
+				i++;
+			if (s[i] != '\0')
+				count++;
+		}
+		else
+			i++;
+	}
+	return (count + 1);
 }
 
-char 	**ft_split(char const *str, char charset) 
-{    
-	int 	i;
-	char 	*start;
-    char 	**result;
-	int 	count_word;
-	int 	inside_word;
+static char	**ft_freetab(char **tab)
+{
+	int	i;
+
+	i = -1;
+	while (tab[i])
+		free(tab[++i]);
+	free(tab);
+	return (NULL);
+}
+
+static char	**ft_split_norme(char **tab, char const *s, char c)
+{
+	size_t		i;
+	size_t		j;
+	size_t		k;
 
 	i = 0;
-	inside_word = 0;
-	start = (char *)str;
-	count_word = ft_count_word(str, charset);
-	result = (char **)malloc(sizeof(char *) * (count_word + 1));
-	if (!result)
-        return NULL;
-    while (*str)
+	k = 0;
+	if (!s)
+		return (NULL);
+	while (k < ft_count(s, c) - 1)
 	{
-        if (ft_is_separator(*str, charset))
-		{
-            if (inside_word)
-			{
-                result[i++] = ft_strndup(start, (str - start));
-                inside_word = 0;
-            }
-            start = (char *)str + 1;
-        }
-		else if (!inside_word)
-		{
-            inside_word = 1;
-            start =  (char *)str;
-        }
-        str++;
-    }
-    if (inside_word)
-        result[i++] = ft_strndup(start, (str - start));
-    result[i] = NULL;
-    return (result);
+		while (s[i] == c)
+			i++;
+		j = i;
+		while (s[j] != c && s[j])
+			j++;
+		tab[k] = ft_substr(s, i, j - i);
+		if (tab[k] == NULL)
+			return (ft_freetab(tab));
+		k++;
+		i = j;
+	}
+	return (tab);
+}
+
+char	**ft_split(char const *s, char c)
+{
+	char		**tab;
+
+	if (!s)
+		return (NULL);
+	if ((*s == 0 && c == 0) || (!s && c == 0))
+	{
+		tab = ft_calloc(1, sizeof(char *));
+		return (tab);
+	}
+	tab = ft_calloc(ft_count(s, c), sizeof(char *));
+	if (!tab)
+		return (NULL);
+	ft_split_norme(tab, s, c);
+	return (tab);
 }

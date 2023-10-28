@@ -10,16 +10,16 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-int		ft_atoi(char *str)
+int	ft_atoi(char	*str)
 {
-	int res;
-	int sign;
+	int	res;
+	int	sign;
 
 	res = 0;
 	sign = 1;
 	while ((*str > 8 && *str < 14) || *str == 32)
 		str++;
-	if(*str == '+' || *str == '-')
+	if (*str == '+' || *str == '-')
 	{
 		if (*str == '-')
 			sign *= -1;

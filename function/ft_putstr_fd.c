@@ -12,8 +12,8 @@
 
 #include "libft.h"
 
-void 	ft_putstr_fd(char *str, int fd)
+void	ft_putstr_fd(char	*str, int fd)
 {
-	while(*str)
+	while (*str)
 		ft_putchar_fd(*str++, fd);
 }
