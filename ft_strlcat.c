@@ -39,6 +39,8 @@ size_t	ft_strlcat(char	*dst, const char	*src, size_t size)
 	src_len = ft_strlen(src);
 	dst_len = ft_strlen(dst);
 	total_len = dst_len + src_len;
+	if (size == 0)
+		return (src_len);
 	if (size <= dst_len)
 		return (src_len + size);
 	copy_len = size - dst_len - 1;

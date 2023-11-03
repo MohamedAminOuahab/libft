@@ -1,26 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   ft_lstnew_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: moouahab <mohamed.ouahab1999@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/21 22:19:37 by moouahab          #+#    #+#             */
-/*   Updated: 2023/10/21 22:19:37 by moouahab         ###   ########.fr       */
+/*   Created: 2023/10/29 15:44:32 by moouahab          #+#    #+#             */
+/*   Updated: 2023/10/29 15:44:32 by moouahab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strchr(const char	*s, int c)
+/**
+* @param content: le continue du nouvel element;
+* @return : nouvel element ou NULL; 
+*/
+
+t_list	*ft_lstnew(void const *content)
 {
-	while (*s != '\0')
-	{
-		if (*s == (char)c)
-			return ((char *)s);
-		s++;
-	}
-	if ((char)c == '\0')
-		return ((char *)s);
-	return (NULL);
+	t_list	*new_element;
+
+	new_element = malloc(sizeof(*new_element));
+	if (!new_element)
+		return (NULL);
+	new_element->content = (void *)content;
+	new_element->next = NULL;
+	return (new_element);
 }

@@ -25,7 +25,7 @@ typedef struct s_list
 }t_list;
 
 char	*ft_itoa(int n);
-int		ft_atoi(char *str);
+int		ft_atoi(char const *str);
 int		ft_toupper(int c);
 int		ft_tolower(int c);
 int		ft_isalpha(int c);
