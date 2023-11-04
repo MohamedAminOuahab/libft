@@ -33,3 +33,20 @@ void	*ft_memmove(void	*dest, const void	*src, size_t n)
 			*dst++ = *srcp++;
 	return (dest);
 }
+
+int	main(void)
+{
+	int size = 128 * 1024 * 1024;
+	char *dst = (char *)malloc(sizeof(char) * size);
+	char *data = (char *)malloc(sizeof(char) * size);
+
+	ft_memset(data, 'a', size);
+	if(!dst)
+		exit(EXIT_FAILURE);
+	ft_memmove(dst, data, size);
+	ft_putstr_fd(dst, 1);
+	exit(EXIT_SUCCESS);
+	free(dst);
+	free(data);
+	return 0;
+}

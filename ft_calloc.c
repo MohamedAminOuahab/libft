@@ -14,13 +14,11 @@
 
 void	*ft_calloc(size_t num_elements, size_t element_size)
 {
-	size_t	total_size;
 	void	*ptr;
 
-	total_size = num_elements * element_size;
-	ptr = malloc(total_size);
-	if (!ptr)
+	ptr = malloc(num_elements * element_size);
+	if (ptr == NULL)
 		return (NULL);
-	memset(ptr, 0, total_size);
+	ft_bzero(ptr, num_elements * element_size);
 	return (ptr);
 }
