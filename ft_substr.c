@@ -10,8 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
 	size_t	i;
@@ -24,6 +22,10 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 		return (ft_strdup(""));
 	if (len > (ft_strlen(s) - start))
 		len = ft_strlen(s) - start;
+	if (len > ft_strlen(s))
+		len = ft_strlen(s);
+	if ((int)j < 0)
+		j = ft_strlen(s) - j;
 	str = ft_calloc((len + 1), sizeof(char));
 	if (!str)
 		return (NULL);
@@ -34,14 +36,3 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	}
 	return (str);
 }
-/*
-int	main(int ac, char **av)
-{
-	if(ac == 4)
-	{
-		char *str = ft_substr(av[1] , ft_atoi(av[2]), ft_atoi(av[3]));
-		printf("la substring - > %s", str);
-		free(str);
-	}
-	return 0;
-}*/
