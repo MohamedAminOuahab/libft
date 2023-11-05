@@ -33,7 +33,7 @@ void	*ft_memmove(void	*dest, const void	*src, size_t n)
 			*dst++ = *srcp++;
 	return (dest);
 }
-
+/*
 int	main(void)
 {
 	int size = 128 * 1024 * 1024;
@@ -49,4 +49,4 @@ int	main(void)
 	free(dst);
 	free(data);
 	return 0;
-}
+}*/
