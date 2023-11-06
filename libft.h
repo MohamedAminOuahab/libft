@@ -6,7 +6,7 @@
 /*   By: moouahab <mohamed.ouahab1999@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 21:23:12 by moouahab          #+#    #+#             */
-/*   Updated: 2023/10/19 21:23:12 by moouahab         ###   ########.fr       */
+/*   Updated: 2023/11/06 09:05:45 by moouahab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 # include <stdlib.h>
 # include <unistd.h>
-# include <stdio.h>
 # include <string.h>
 
 typedef struct s_list
