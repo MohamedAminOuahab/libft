@@ -11,27 +11,35 @@
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdlib.h>
-#include <stdio.h>
 #include <stdint.h>
+
+/**
+ * @param num_elements : est le nombre d'element de a alouer 
+ * @param elements_size : taill des element
+ * @return: ptr ou NULL si 
+ * @details : allou est initialise un tableaux dynamiquement 
+*/
 
 void	*ft_calloc(size_t num_elements, size_t element_size)
 {
 	void	*ptr;
 
-	if (num_elements == 18446744073709551615UL
-		&& element_size == 18446744073709551615UL)
+	if (element_size > 0 && SIZE_MAX / element_size < num_elements)
 		return (NULL);
-	if ((int)(num_elements) < 0 && (int)(element_size) < 0)
-		return (NULL);
-	if ((int)(num_elements * element_size) < 0)
-		return (0);
 	ptr = malloc(num_elements * element_size);
 	if (ptr == NULL)
 		return (NULL);
-	ft_bzero(ptr, num_elements * element_size);
+	ft_memset(ptr, 0, num_elements * element_size);
 	return (ptr);
 }
+
+
+// int	main()
+// {
+// 	char *test = ft_calloc(547608330240, 0);
+// 	printf("%lu", strlen(test));
+// }
+
 
 /*
 int	main()
