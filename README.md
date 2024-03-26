@@ -91,7 +91,8 @@ With libft, you hold the key to unlock the cybernetic potential within. Embrace 
 
 ## Animated Presentation
 
-
+```
+.html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -203,4 +204,4 @@ With libft, you hold the key to unlock the cybernetic potential within. Embrace 
   </script>
 </body>
 </html>
-
+```
