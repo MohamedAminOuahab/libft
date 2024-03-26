@@ -89,27 +89,115 @@ With libft, you hold the key to unlock the cybernetic potential within. Embrace 
 ## Animated Presentation
 
 ```html
-<blink>Welcome to the cyberpunk world of libft - where code is king and functions reign supreme.</blink>
-@keyframes neon {
-  0% { color: #0ff; }
-  50% { color: #00f; }
-  100% { color: #0ff; }
-}
-
-.neon-text {
-  animation: neon 1s infinite;
-}
-let message = "Embrace the cybernetic future with libft.";
-let index = 0;
-
-function animateText() {
-  document.getElementById('animated-text').innerHTML = message.substring(0, index);
-  index++;
-  if (index > message.length) {
-    index = 0;
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cyberpunk Background</title>
+<style>
+  body {
+    margin: 0;
+    overflow: hidden;
+    font-family: 'Courier New', Courier, monospace;
+    color: white;
+    font-size: 10px;
+    letter-spacing: 2px;
+    background: linear-gradient(to bottom, #000000, #000000, #000000, #000000, #0a0a0a);
   }
-}
 
-setInterval(animateText, 100);
-<div id="animated-text" class="neon-text"></div>
+  canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+  }
+
+  h1, p {
+    text-align: center;
+    margin-top: 100px;
+    font-size: 40px;
+    color: white;
+    animation: neon 1.5s infinite alternate;
+  }
+
+  @keyframes neon {
+    0% { text-shadow: 0 0 10px #0ff, 0 0 20px #0ff, 0 0 30px #0ff, 0 0 40px #00f, 0 0 70px #00f, 0 0 80px #00f, 0 0 100px #00f, 0 0 150px #00f; }
+    50% { text-shadow: none; }
+    100% { text-shadow: 0 0 10px #0ff, 0 0 20px #0ff, 0 0 30px #0ff, 0 0 40px #00f, 0 0 70px #00f, 0 0 80px #00f, 0 0 100px #00f, 0 0 150px #00f; }
+  }
+</style>
+</head>
+<body>
+  <canvas id="backgroundCanvas"></canvas>
+  <h1>Welcome to the Cyberpunk World of Libft</h1>
+  <p>Welcome to the cyberpunk world of Libft - where the digital domain reigns supreme and lines of code echo like whispers in the night.</p>
+  <p>Injecting neon pulses into the circuitry of tomorrow, we embrace the cybernetic future with each keystroke.</p>
+  <p>Behold, the urban sprawl of data, where algorithms carve paths through the digital wilderness, and hackers dance on the edge of chaos.</p>
+  <p>Code is king in this dystopian landscape, where information is power, and every line of code is a revolution waiting to happen.</p>
+
+  <script>
+    const canvas = document.getElementById('backgroundCanvas');
+    const ctx = canvas.getContext('2d');
+    
+    // Set canvas size
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    // Array to store electrical pulses
+    const pulses = [];
+
+    // Function to create a random pulse
+    function createPulse() {
+      const pulse = {
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        radius: Math.random() * 30 + 10, // Random radius
+        color: `rgba(0, 255, 255, ${Math.random() * 0.5 + 0.5})`, // Random color with alpha
+        speed: Math.random() * 2 + 1 // Random speed
+      };
+      pulses.push(pulse);
+    }
+
+    // Function to draw electrical pulses
+    function drawPulses() {
+      pulses.forEach((pulse, index) => {
+        ctx.beginPath();
+        ctx.arc(pulse.x, pulse.y, pulse.radius, 0, Math.PI * 2);
+        ctx.fillStyle = pulse.color;
+        ctx.fill();
+        ctx.closePath();
+
+        // Move pulse
+        pulse.x += pulse.speed;
+
+        // Remove pulse if it goes out of canvas
+        if (pulse.x - pulse.radius > canvas.width) {
+          pulses.splice(index, 1);
+        }
+      });
+    }
+
+    // Function to animate the background
+    function animateBackground() {
+      // Clear canvas
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      // Draw electrical pulses
+      drawPulses();
+
+      // Create new pulses at intervals
+      if (Math.random() < 0.1) {
+        createPulse();
+      }
+
+      // Repeat animation
+      requestAnimationFrame(animateBackground);
+    }
+
+    // Start animation
+    animateBackground();
+  </script>
+</body>
+</html>
 ```
