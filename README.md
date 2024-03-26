@@ -91,8 +91,7 @@ With libft, you hold the key to unlock the cybernetic potential within. Embrace 
 
 ## Animated Presentation
 
-```
-.html
+```.html
 <!DOCTYPE html>
 <html lang="en">
 <head>
